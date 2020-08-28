@@ -1,0 +1,9 @@
+# Ignore tracking of data
+data/*
+
+#ignore python virtual environment dependencies
+env/*
+
+#Ignore cached project files
+.vscode*
+
