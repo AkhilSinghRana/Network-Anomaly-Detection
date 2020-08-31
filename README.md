@@ -33,6 +33,11 @@ The beauty of this approach is that we do not need too many samples of data for 
 
 Explanation: The choice of small samples from the original dataset is based on the intuition that one class characteristics (normal) will differ from that of the other (DDoS-attack). To distinguish these characteristics we need to show the autoencoders only one class of data. This is because the autoencoder will try to learn only one class and automaticlly distinuish the other class.
 
+Once, the model is trained. We are intereseted in obtaining latent representation of the input learned by the model. This can be accessed by the weights of the trained model. We will create another network containing sequential layers, and we will only add the trained weights till the third layer where latent representation exists. Generate the hidden representations of two classes : normal and DDoS-Attack by predicting the raw inputs using the above model.
+
+Now, we can just train a simple linear classifier on the dataset. Or we can choose to train a multi-class clasifier, which can be another NN with softmax outputs for the number of classes!
+
+
 ## Traditional Machine Learning-Based Approaches
 
 Below is a brief overview of popular machine learning-based techniques for anomaly detection.
