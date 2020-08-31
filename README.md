@@ -113,7 +113,7 @@ Some highlights from the notebook and how data exploration can benefit you in mo
 
 
 
-## Train-Dataset:
+## Train Dataset:
 
 Instructions for training on your own Dataset is shown in the notebook below. 
 
