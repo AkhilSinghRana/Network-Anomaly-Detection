@@ -37,7 +37,7 @@ Explanation: The choice of small samples from the original dataset is based on t
 
 Below is a brief overview of popular machine learning-based techniques for anomaly detection.
 
-a.Density-Based Anomaly Detection
+<b> a.Density-Based Anomaly Detection </b>
 Density-based anomaly detection is based on the k-nearest neighbors algorithm.
 
 Assumption: Normal data points occur around a dense neighborhood and abnormalities are far away.
@@ -48,30 +48,33 @@ K-nearest neighbor: k-NN is a simple, non-parametric lazy learning technique use
 
 Relative density of data: This is better known as local outlier factor (LOF). This concept is based on a distance metric called reachability distance.
 
-b.Clustering-Based Anomaly Detection
+<b> b.Clustering-Based Anomaly Detection </b>
 Clustering is one of the most popular concepts in the domain of unsupervised learning.
 
 Assumption: Data points that are similar tend to belong to similar groups or clusters, as determined by their distance from local centroids.
 
 K-means is a widely used clustering algorithm. It creates 'k' similar clusters of data points. Data instances that fall outside of these groups could potentially be marked as anomalies.
 
-c.Support Vector Machine-Based Anomaly Detection
+<b>c.Support Vector Machine-Based Anomaly Detection </b>
 A support vector machine is another effective technique for detecting anomalies.
 A SVM is typically associated with supervised learning, but there are extensions (OneClassCVM, for instance) that can be used to identify anomalies as an unsupervised problems (in which training data are not labeled).
 The algorithm learns a soft boundary in order to cluster the normal data instances using the training set, and then, using the testing instance, it tunes itself to identify the abnormalities that fall outside the learned region.
 
 In this project we are going to test the following Anomaly Detection Techniques namely
 
-Isolation Forest Anomaly Detection Algorithm
-Density-Based Anomaly Detection (Local Outlier Factor)Algorithm
-Support Vector Machine Anomaly Detection Algorithm
-AutoEncoders for AnomalyDetection
+- Isolation Forest Anomaly Detection Algorithm
+
+- Density-Based Anomaly Detection (Local Outlier Factor)Algorithm
+
+- Support Vector Machine Anomaly Detection Algorithm
+
+- <b>AutoEncoders for AnomalyDetection</b>
 
 
 
 ## Results
 
-Results for testing on 2 different classes (ChirpJammer and NarrowBandSignal) is shown in fig below ![AutoEncoderResults](extra/autoencoder-results.png) 
+The below result was acheived with AutoEncoder method ![AutoEncoderResults](extra/autoencoder-results.png) 
 
 
 
@@ -102,6 +105,7 @@ Note*- The above code will setup all the required dependencies for you. Tested o
 You are now ready to train the models. I recommend to also browse through notebooks folder to understand the workflow a bit better.
 
 ## 2. Data-Exploration:
+
 It is very important to understand the data before the model is constructed. You can go through the notbook DataExploration inside notebooks folder to check how the exploration was done and how data looks like.
 
 Some highlights from the notebook and how data exploration can benefit you in model creation is shown below.
