@@ -9,7 +9,16 @@ Many IoT devices are becoming victims of hackers due to their lack of security a
 
 When designing the model, one has to keep in mind that in a real life scenario, the attack detection is relevant only if it is conducted in a streaming/near real time way.
 
- 
+We will create an autoencoder model in which we only show the model non-fraud cases. The model will try to learn the best representation of normal cases. The same model will be used to generate the representations of cases where a DDoS attack is done, and we expect them to be different from normal ones.
+
+Create a network with one input layer and one output layer having identical dimentions ie. the shape of non-fraud cases. We will use keras package to craete our model.
+
+![AutoEncoder](extra/autoencoder-net-arch.png) 
+
+The beauty of this approach is that we do not need too many samples of data for learning the good representations. We will use only 8000 rows of normal cases to train the autoencoder. Additionally, We do not need to run this model for a large number of epochs, running it for 10 epochs was sufficient.
+
+Explanation: The choice of small samples from the original dataset is based on the intuition that one class characteristics (normal) will differ from that of the other (DDoS-attack). To distinguish these characteristics we need to show the autoencoders only one class of data. This is because the autoencoder will try to learn only one class and automaticlly distinuish the other class.
+
 
 ### Results
 
@@ -68,11 +77,6 @@ python main.py --data_path data/data.csv --mode train
   
 #### 2. Testing/Loading model from checkpoint:
 
-
-Running from a Terminal:
-
-``` python main.py --help ```
-
 Sample test command from root_dir 
 
 ```shell
@@ -83,3 +87,11 @@ python main.py --data_path data/test.csv --mode test
 
 The above test command will take the test csv and pass through the autoencoder for creating latent representation of the test data, which then be passed through to the trained linear regression classifier
          
+#### 3. Visualizing Data Relationship with TSNE:
+
+T-SNE (t-Distributed Stochastic Neighbor Embedding) is a dataset decomposition technique which reduced the dimentions of data and produces only top n components with maximum information.
+
+Every dot in the following represents a request. Normal transactions are represented as Green while potential attacks are represented as Red. The two axis are the components extracted by tsne.
+
+| TSNE on Normal scaled data vs | TSNE on embedded Latent representation|
+|![TSNE](extra/TSNE-1.png) | ![TSNE-1](extra/TSNE-embeddings.png)|
