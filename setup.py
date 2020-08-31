@@ -12,7 +12,12 @@ def parse_requiremetns(fname):
     return required
     
 setup(
-    name = "DDoS Detetcion with Machine Learning",
+    name="ddos_anomaly_detection",
+    version="0.1.0",
+    url=" ",
+    license='MIT',
+    
+    #Author
     author = "Akhil Singh Rana",
     author_email = "er.akhil.singh.rana@gmail.com",
     description = ("A machine learning approach to DDoS attack detection in Networking"),

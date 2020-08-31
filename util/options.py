@@ -11,9 +11,10 @@ def ArgumentParser():
         parser.add_argument("--visualize","-visualize", action="store_true", help="Enable data visualization module")
 
         #Arguments for RL algorithm/ taining / testing
+        parser.add_argument("--ckpt_path", type=str, default="./checkpoints", help="Path to checkpoint the models")
         parser.add_argument("--model_name", type=str, default="autoencoder", help="Choose a model for training")
         parser.add_argument("--num_epochs", type=int, default=50, help="number of epochs to train the learn function of algorithm")
         parser.add_argument("--exp_name", type=str, default="exp_1", help="experiment name (used to save model)")
         
-        
+        args = parser.parse_args()
         return args

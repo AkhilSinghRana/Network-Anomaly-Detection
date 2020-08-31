@@ -1,7 +1,7 @@
 pandas
 matplotlib
 numpy
-jupyter notebook
+jupyter
 seaborn
 sklearn
 keras
