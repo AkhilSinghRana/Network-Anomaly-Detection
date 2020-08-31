@@ -10,10 +10,10 @@ This project aims to provide a setup for anomaly detection in Networking, specif
   - [Introduction:](#Introduction)
   - [Dependencies:](#dependencies)
   - [Setup Instructions](#setup-instructions)
-  - [Results:](#results)
+  - [Train Dataset](#Train-Dataset:)
+  - [Results](#results)
+  - [Visualizing Data with TSNE:](#Visualizing-Data-Relationship-with-TSNE)
   - [Future Work](#future-work)
-
-
 
 
 ## Introduction
@@ -32,6 +32,41 @@ Create a network with one input layer and one output layer having identical dime
 The beauty of this approach is that we do not need too many samples of data for learning the good representations. We will use only 8000 rows of normal cases to train the autoencoder. Additionally, We do not need to run this model for a large number of epochs, running it for 10 epochs was sufficient.
 
 Explanation: The choice of small samples from the original dataset is based on the intuition that one class characteristics (normal) will differ from that of the other (DDoS-attack). To distinguish these characteristics we need to show the autoencoders only one class of data. This is because the autoencoder will try to learn only one class and automaticlly distinuish the other class.
+
+## Traditional Machine Learning-Based Approaches
+
+Below is a brief overview of popular machine learning-based techniques for anomaly detection.
+
+a.Density-Based Anomaly Detection
+Density-based anomaly detection is based on the k-nearest neighbors algorithm.
+
+Assumption: Normal data points occur around a dense neighborhood and abnormalities are far away.
+
+The nearest set of data points are evaluated using a score, which could be Eucledian distance or a similar measure dependent on the type of the data (categorical or numerical). They could be broadly classified into two algorithms:
+
+K-nearest neighbor: k-NN is a simple, non-parametric lazy learning technique used to classify data based on similarities in distance metrics such as Eucledian, Manhattan, Minkowski, or Hamming distance.
+
+Relative density of data: This is better known as local outlier factor (LOF). This concept is based on a distance metric called reachability distance.
+
+b.Clustering-Based Anomaly Detection
+Clustering is one of the most popular concepts in the domain of unsupervised learning.
+
+Assumption: Data points that are similar tend to belong to similar groups or clusters, as determined by their distance from local centroids.
+
+K-means is a widely used clustering algorithm. It creates 'k' similar clusters of data points. Data instances that fall outside of these groups could potentially be marked as anomalies.
+
+c.Support Vector Machine-Based Anomaly Detection
+A support vector machine is another effective technique for detecting anomalies.
+A SVM is typically associated with supervised learning, but there are extensions (OneClassCVM, for instance) that can be used to identify anomalies as an unsupervised problems (in which training data are not labeled).
+The algorithm learns a soft boundary in order to cluster the normal data instances using the training set, and then, using the testing instance, it tunes itself to identify the abnormalities that fall outside the learned region.
+
+In this project we are going to test the following Anomaly Detection Techniques namely
+
+Isolation Forest Anomaly Detection Algorithm
+Density-Based Anomaly Detection (Local Outlier Factor)Algorithm
+Support Vector Machine Anomaly Detection Algorithm
+AutoEncoders for AnomalyDetection
+
 
 
 ## Results
@@ -78,7 +113,7 @@ Some highlights from the notebook and how data exploration can benefit you in mo
 
 
 
-## 3. Train on your own Dataset:
+## Train-Dataset:
 
 Instructions for training on your own Dataset is shown in the notebook below. 
 
@@ -100,7 +135,7 @@ python main.py --data_path data/data.csv --mode train
 ```
          
   
-## 4. Testing/Loading model from checkpoint:
+## Testing/Loading-checkpoints:
 
 Sample test command from root_dir 
 
@@ -112,7 +147,7 @@ python main.py --data_path data/test.csv --mode test
 
 The above test command will take the test csv and pass through the autoencoder for creating latent representation of the test data, which then be passed through to the trained linear regression classifier
          
-## 5. Visualizing Data Relationship with TSNE:
+## Visualizing Data Relationship with TSNE:
 
 T-SNE (t-Distributed Stochastic Neighbor Embedding) is a dataset decomposition technique which reduced the dimentions of data and produces only top n components with maximum information.
 
@@ -125,6 +160,8 @@ Every dot in the following represents a request. Normal transactions are represe
 
 ## Future Work
 
-- More DataAugmentation: to further improve the results. If you carefully read the DataLoader code(util/dataLoader.py) which uses  ImageDataGenerator, where you can easily add already existing image-Augmentation techniques
+- Adding and training more models
 
-- Utilize TransferLearning Approach.
+- further classifying different kinds of DDoS attacks!
+
+- Creating a semi-supervised loop to update models online while new data is being gathered.
