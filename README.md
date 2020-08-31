@@ -1,8 +1,22 @@
+***
+
 # Network-Anomaly-Detection
 
 This project aims to provide a setup for anomaly detection in Networking, specifically to detect DDoS attacks
 
-### Introduction
+<summary>Table of Contents</summary>
+
+- [Network-Anomaly-Detection](#Network-Anomaly-Detection)
+  - [Introduction:](#Introduction)
+  - [Dependencies:](#dependencies)
+  - [Setup Instructions](#setup-instructions)
+  - [Results:](#results)
+  - [Future Work](#future-work)
+
+
+
+
+## Introduction
 
 
 Many IoT devices are becoming victims of hackers due to their lack of security and they are often turned into botnets conducting Distributed Denial of Service (DDoS) attacks. We aim to detect those attacks by analyzing their network traffic. 
@@ -20,13 +34,13 @@ The beauty of this approach is that we do not need too many samples of data for 
 Explanation: The choice of small samples from the original dataset is based on the intuition that one class characteristics (normal) will differ from that of the other (DDoS-attack). To distinguish these characteristics we need to show the autoencoders only one class of data. This is because the autoencoder will try to learn only one class and automaticlly distinuish the other class.
 
 
-### Results
+## Results
 
 Results for testing on 2 different classes (ChirpJammer and NarrowBandSignal) is shown in fig below ![AutoEncoderResults](extra/autoencoder-results.png) 
 
 
 
-### Setup Instructions:
+## Setup Instructions:
 #### 1. Requirements
 
 To reproduce the results from this repository, it is recommended to use virtual python environment and python version 3.6 Tensorflow version 2.3 was used to build the models. The project is tested only on Linux
@@ -52,8 +66,19 @@ Note*- The above code will setup all the required dependencies for you. Tested o
 
 You are now ready to train the models. I recommend to also browse through notebooks folder to understand the workflow a bit better.
 
+## 2. Data-Exploration:
+It is very important to understand the data before the model is constructed. You can go through the notbook DataExploration inside notebooks folder to check how the exploration was done and how data looks like.
 
-#### 2. Train on your own Dataset:
+Some highlights from the notebook and how data exploration can benefit you in model creation is shown below.
+
+|Request Packet sent according to classes | Correlation matrix|
+|----------------|------------|
+|![TSNE](extra/packetSent.png) | ![Corr_matrix](extra/Corr_matrix.png)|
+
+
+
+
+## 3. Train on your own Dataset:
 
 Instructions for training on your own Dataset is shown in the notebook below. 
 
@@ -75,7 +100,7 @@ python main.py --data_path data/data.csv --mode train
 ```
          
   
-#### 2. Testing/Loading model from checkpoint:
+## 4. Testing/Loading model from checkpoint:
 
 Sample test command from root_dir 
 
@@ -87,11 +112,19 @@ python main.py --data_path data/test.csv --mode test
 
 The above test command will take the test csv and pass through the autoencoder for creating latent representation of the test data, which then be passed through to the trained linear regression classifier
          
-#### 3. Visualizing Data Relationship with TSNE:
+## 5. Visualizing Data Relationship with TSNE:
 
 T-SNE (t-Distributed Stochastic Neighbor Embedding) is a dataset decomposition technique which reduced the dimentions of data and produces only top n components with maximum information.
 
 Every dot in the following represents a request. Normal transactions are represented as Green while potential attacks are represented as Red. The two axis are the components extracted by tsne.
 
-| TSNE on Normal scaled data vs | TSNE on embedded Latent representation|
+|TSNE on Normal scaled data vs | TSNE on embedded Latent representation|
+|----------------|------------|
 |![TSNE](extra/TSNE-1.png) | ![TSNE-1](extra/TSNE-embeddings.png)|
+
+
+## Future Work
+
+- More DataAugmentation: to further improve the results. If you carefully read the DataLoader code(util/dataLoader.py) which uses  ImageDataGenerator, where you can easily add already existing image-Augmentation techniques
+
+- Utilize TransferLearning Approach.
