@@ -6,3 +6,4 @@ seaborn
 sklearn
 keras
 tensorflow
+scipy
